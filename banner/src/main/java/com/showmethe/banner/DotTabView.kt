@@ -29,7 +29,6 @@ class DotTabView @JvmOverloads constructor(
 ) : RelativeLayout(mContext, attrs, defStyleAttr) {
 
     private var viewPager2: ViewPager2? = null
-    private var viewPager: ViewPager? = null
     private var mDotDis: Int = 0//小圆点的距离
     private var divideWidth: Int = 0
     private var selectRadius = default_radius
