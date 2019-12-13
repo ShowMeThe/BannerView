@@ -1,6 +1,69 @@
 ### 基于ViewPager2的Banner
 
+#### 图片GIF</br>
+<img src ="https://github.com/ShowMeThe/BannerView/blob/master/jpg/20191213.gif" alt = "GIF"/>
 
+#### XML写法
+```java
+<com.showmethe.banner.Banner
+        android:id="@+id/banner"
+        android:transitionName="photo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:autoPlay="true"
+        app:imageMaxHeight="1200dp"
+        app:imageMinHeight="600dp"
+        app:imageScaleType="centerCrop"
+        app:indicator_gravity="CENTER"
+        app:scrollType="INFINITE"
+        app:dotType="RECTANGLE"
+        app:dotWith="12dp"
+        />
+       
+```
+</br>
+#### style.xml
+```java
+ <declare-styleable name="Banner">
+        <attr name="selected_color" format="color|reference"/>
+        <attr name="unselected_color" format="color|reference"/>
+        <attr name="autoPlay" format="boolean"/>
+        <attr name="dotWith" format="dimension"/>
+        <attr name="dotDistant" format="dimension"/>
+        <attr name="dotType" format="enum">
+            <enum name="OVAL" value="0"/>
+            <enum name="RECTANGLE" value="1"/>
+        </attr>
+        <attr name="delayTime" format="integer"/>
+        <attr name="pageOrientation" format="enum">
+            <enum name="HORIZONTAL" value="0"/>
+        </attr>
+        <attr name="transformer" format="enum">
+            <enum name="Parallax" value="0"/>
+            <enum name="Spinner" value="1"/>
+            <enum name="AlphaScale" value="2"/>
+        </attr>
+        <attr name="imageScaleType" format="enum">
+            <enum name="fitXY" value="0"/>
+            <enum name="centerCrop" value="1"/>
+        </attr>
+        <attr name="showIndicator" format="boolean"/>
+        <attr name="imageMinHeight" format="dimension"/>
+        <attr name="imageMaxHeight" format="dimension"/>
+        <attr name="indicator_gravity" format="enum">
+            <enum name="CENTER" value="0"/>
+            <enum name="START" value="1"/>
+            <enum name="END" value="2"/>
+        </attr>
+        <attr name="scrollType" format="enum">
+            <enum name="REPEAT" value="3"/>
+            <enum name="INFINITE" value="4"/>
+        </attr>
+    </declare-styleable>
+
+
+```
+</br>
  参数 | 类型 | 作用
  ---- | ----- | ------  
  selected_color | 颜色 | 选中指示条的颜色
