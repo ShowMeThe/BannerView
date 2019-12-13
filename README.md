@@ -1,9 +1,10 @@
 ### 基于ViewPager2的Banner
 
 #### 图片GIF</br>
-<img src ="https://github.com/ShowMeThe/BannerView/blob/master/jpg/20191213.gif" alt = "GIF"/>
+<img src ="https://github.com/ShowMeThe/BannerView/blob/master/jpg/20191213.gif" alt = "GIF"/></br>
 
-#### XML写法
+#### XML写法</br>
+
 ```java
 <com.showmethe.banner.Banner
         android:id="@+id/banner"
@@ -22,7 +23,9 @@
        
 ```
 </br>
+
 #### style.xml
+
 ```java
  <declare-styleable name="Banner">
         <attr name="selected_color" format="color|reference"/>
@@ -64,6 +67,7 @@
 
 ```
 </br>
+
  参数 | 类型 | 作用
  ---- | ----- | ------  
  selected_color | 颜色 | 选中指示条的颜色
