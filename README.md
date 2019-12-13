@@ -24,6 +24,27 @@
 ```
 </br>
 
+#### 绑定生命周期DefaultLifecycleObserver 
+```java
+
+ override fun onStop(owner: LifecycleOwner) {
+        stopPlay()
+    }
+
+    override fun onResume(owner: LifecycleOwner) {
+        if (autoPlay) {
+            resumePlay()
+        }
+    }
+
+    override fun onDestroy(owner: LifecycleOwner) {
+        stopPlay()
+        this.owner?.lifecycle?.removeObserver(this)
+        this.owner = null
+    }
+
+```
+
 #### style.xml
 
 ```java
