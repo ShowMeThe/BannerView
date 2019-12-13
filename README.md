@@ -47,7 +47,9 @@
 </br>
 可以利用以下代码处理DefaultLifecycleObserver 版本问题
 </br>
-```
+
+```java
+
 configurations{
     all{
         resolutionStrategy{
@@ -59,6 +61,7 @@ configurations{
         }
     }
 }
+
 ```
 </br>
 
