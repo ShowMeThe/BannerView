@@ -44,6 +44,23 @@
     }
 
 ```
+</br>
+可以利用以下代码处理DefaultLifecycleObserver 版本问题
+</br>
+```
+configurations{
+    all{
+        resolutionStrategy{
+            eachDependency{  DependencyResolveDetails details ->
+                if(details.requested.name == 'XXXX'){
+                    details.useTarget group: 'XXXX',name:'XXXX',version:"XXX{Version}"
+                }
+            }
+        }
+    }
+}
+```
+</br>
 
 #### style.xml
 
