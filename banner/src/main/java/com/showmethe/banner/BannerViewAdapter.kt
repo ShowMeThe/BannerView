@@ -1,6 +1,7 @@
 package com.showmethe.banner
 
 import android.content.Context
+import android.util.Log
 import android.widget.ImageView
 
 import androidx.databinding.ObservableArrayList

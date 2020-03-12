@@ -2,6 +2,7 @@ package com.showmethe.banner
 
 import android.content.Context
 import android.util.AttributeSet
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.MotionEvent
 import android.view.View
@@ -41,8 +42,6 @@ class Banner @JvmOverloads constructor(
     private var unselectColor: Int = 0
     private var delayTime = TIME
     private var showIndicator = true
-    private var mMinHeight = 0f
-    private var mMaxHeight = 0f
     private var scaleType = 1
     private var transformer: ViewPager2.PageTransformer? = null
     private var transformerType = -1
@@ -134,11 +133,15 @@ class Banner @JvmOverloads constructor(
 
         adapter.setOnImageLoader(object : BannerViewAdapter.onImageLoader {
             override fun display(url: Any, imageView: ImageView) {
-                imageView.maxHeight = mMaxHeight.toInt()
-                imageView.minimumHeight = mMinHeight.toInt()
+                imageView.minimumHeight = measuredHeight
+                imageView.maxHeight = measuredHeight
+                Log.e("222222222222","${measuredHeight}")
                 when (scaleType) {
                     0 -> imageView.scaleType = ImageView.ScaleType.FIT_XY
-                    1 -> imageView.scaleType = ImageView.ScaleType.CENTER_CROP
+                    1 -> {
+                        imageView.adjustViewBounds = false
+                        imageView.scaleType = ImageView.ScaleType.CENTER_CROP
+                    }
                 }
                 loader?.apply {
                     invoke(url, imageView)
@@ -170,10 +173,6 @@ class Banner @JvmOverloads constructor(
             R.styleable.Banner_unselected_color,
             ContextCompat.getColor(context, R.color.white_85)
         )
-        mMinHeight = array.getDimension(
-            R.styleable.Banner_imageMinHeight, px2dip(context,600f))
-        mMaxHeight = array.getDimension(
-            R.styleable.Banner_imageMaxHeight, px2dip(context,2500f))
         delayTime = array.getInt(R.styleable.Banner_delayTime, TIME)
         scaleType = array.getInt(R.styleable.Banner_imageScaleType, 0)
         showIndicator = array.getBoolean(R.styleable.Banner_showIndicator, true)

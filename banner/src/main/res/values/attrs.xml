@@ -26,8 +26,6 @@
             <enum name="centerCrop" value="1"/>
         </attr>
         <attr name="showIndicator" format="boolean"/>
-        <attr name="imageMinHeight" format="dimension"/>
-        <attr name="imageMaxHeight" format="dimension"/>
         <attr name="indicator_gravity" format="enum">
             <enum name="CENTER" value="0"/>
             <enum name="START" value="1"/>
