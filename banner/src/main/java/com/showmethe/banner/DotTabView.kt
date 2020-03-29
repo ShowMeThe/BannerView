@@ -34,7 +34,8 @@ class DotTabView @JvmOverloads constructor(
     private var selectRadius = default_radius
     private var unSelectRadius = default_select_radius
     private val selectDot: ImageView = ImageView(mContext)
-
+    val select = GradientDrawable()
+    val unselects = ArrayList<GradientDrawable>()
 
     fun setViewPager2(
         viewPager: ViewPager2?,
@@ -107,7 +108,6 @@ class DotTabView @JvmOverloads constructor(
         init(mContext, tabCount, unSelectColor, dotType)
 
 
-        val select = GradientDrawable()
         when (dotType) {
             0 -> {
                 selectDot.minimumHeight = selectRadius
@@ -154,7 +154,7 @@ class DotTabView @JvmOverloads constructor(
         for (i in 0 until tabCount) {
             val unSelectDot = ImageView(context)
             val unselect = GradientDrawable()
-
+            unselects.add(unselect)
             when (dotType) {
                 0 -> {
                     unSelectDot.minimumHeight = selectRadius

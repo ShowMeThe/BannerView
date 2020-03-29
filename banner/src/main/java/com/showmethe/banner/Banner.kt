@@ -39,7 +39,7 @@ class Banner @JvmOverloads constructor(
     private var autoPlay = false
     private var smoothType = true
     private var selectColor: Int = 0
-    private var unselectColor: Int = 0
+    var unselectColor: Int = 0
     private var delayTime = TIME
     private var showIndicator = true
     private var scaleType = 1
@@ -167,8 +167,7 @@ class Banner @JvmOverloads constructor(
         autoPlay = array.getBoolean(R.styleable.Banner_autoPlay, true)
         selectColor = array.getColor(
             R.styleable.Banner_selected_color,
-            ContextCompat.getColor(context, R.color.colorAccent)
-        )
+            ContextCompat.getColor(context, R.color.colorAccent))
         unselectColor = array.getColor(
             R.styleable.Banner_unselected_color,
             ContextCompat.getColor(context, R.color.white_85)
@@ -339,6 +338,16 @@ class Banner @JvmOverloads constructor(
                 selectColor,
                 unselectColor
             )
+        }
+    }
+
+    fun setSelectorColor(color:Int){
+        dotTabView?.select?.setColor(color)
+    }
+
+    fun setUnSelectorColor(color:Int){
+        dotTabView?.unselects?.forEach {
+            it.setColor(color)
         }
     }
 
