@@ -1,14 +1,13 @@
 package com.showmethe.banner
 
 import android.content.Context
-import android.util.Log
 import android.widget.ImageView
 
 import androidx.databinding.ObservableArrayList
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.SimpleItemAnimator
 import com.showmethe.banner.databinding.ItemBannerViewBinding
-import showmethe.github.core.adapter.DataBindBaseAdapter
+import com.showmethe.banner.adapter.DataBindBaseAdapter
 
 
 /**

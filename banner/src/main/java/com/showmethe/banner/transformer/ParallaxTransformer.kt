@@ -1,4 +1,4 @@
-package showmethe.github.core.widget.transformer
+package com.showmethe.banner.transformer
 
 import android.view.View
 import androidx.viewpager2.widget.ViewPager2

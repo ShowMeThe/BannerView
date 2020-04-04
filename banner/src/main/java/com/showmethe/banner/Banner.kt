@@ -2,7 +2,6 @@ package com.showmethe.banner
 
 import android.content.Context
 import android.util.AttributeSet
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.MotionEvent
 import android.view.View
@@ -15,9 +14,8 @@ import androidx.lifecycle.LifecycleOwner
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
 import com.showmethe.banner.transformer.SpinnerTransformer
-import com.showmethe.banner.util.px2dip
-import showmethe.github.core.widget.transformer.AlphaScalePageTransformer
-import showmethe.github.core.widget.transformer.ParallaxTransformer
+import com.showmethe.banner.transformer.AlphaScalePageTransformer
+import com.showmethe.banner.transformer.ParallaxTransformer
 
 
 /**
@@ -135,7 +133,6 @@ class Banner @JvmOverloads constructor(
             override fun display(url: Any, imageView: ImageView) {
                 imageView.minimumHeight = measuredHeight
                 imageView.maxHeight = measuredHeight
-                Log.e("222222222222","${measuredHeight}")
                 when (scaleType) {
                     0 -> imageView.scaleType = ImageView.ScaleType.FIT_XY
                     1 -> {
