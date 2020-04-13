@@ -35,8 +35,6 @@ fun <D> ObservableArrayList<D>.addCallback(adapter: RecyclerView.Adapter<*>){
         override fun onItemRangeInserted(sender: ObservableArrayList<D>, positionStart: Int, itemCount: Int) {
             adapter.  notifyItemInserted(positionStart + 1)
             adapter. notifyItemRangeChanged(positionStart , sender.size - positionStart)
-
-
         }
 
         override fun onItemRangeChanged(sender: ObservableArrayList<D>?, positionStart: Int, itemCount: Int) {

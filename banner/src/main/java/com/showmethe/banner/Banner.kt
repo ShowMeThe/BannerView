@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.MotionEvent
 import android.view.View
 import android.widget.ImageView
+import android.widget.ImageView.ScaleType
 import android.widget.RelativeLayout
 import androidx.core.content.ContextCompat
 import androidx.databinding.ObservableArrayList
@@ -37,7 +38,7 @@ class Banner @JvmOverloads constructor(
     private var autoPlay = false
     private var smoothType = true
     private var selectColor: Int = 0
-    var unselectColor: Int = 0
+    private var unselectColor: Int = 0
     private var delayTime = TIME
     private var showIndicator = true
     private var scaleType = 1
@@ -113,12 +114,16 @@ class Banner @JvmOverloads constructor(
                 when (scrollType) {
                     REPEAT -> onPageSelect?.invoke(position)
                     INFINITY -> {
-                        if (position == 0) {
-                            onPageSelect?.invoke(factory.count - 1)
-                        } else if (position == factory.count - 1) {
-                            onPageSelect?.invoke(0)
-                        } else {
-                            onPageSelect?.invoke(position - 1)
+                        when (position) {
+                            0 -> {
+                                onPageSelect?.invoke(factory.count - 1)
+                            }
+                            factory.count - 1 -> {
+                                onPageSelect?.invoke(0)
+                            }
+                            else -> {
+                                onPageSelect?.invoke(position - 1)
+                            }
                         }
                     }
                 }
@@ -131,13 +136,12 @@ class Banner @JvmOverloads constructor(
 
         adapter.setOnImageLoader(object : BannerViewAdapter.onImageLoader {
             override fun display(url: Any, imageView: ImageView) {
-                imageView.minimumHeight = measuredHeight
-                imageView.maxHeight = measuredHeight
                 when (scaleType) {
-                    0 -> imageView.scaleType = ImageView.ScaleType.FIT_XY
+                    0 -> {
+                        imageView.scaleType = ScaleType.FIT_XY
+                    }
                     1 -> {
-                        imageView.adjustViewBounds = false
-                        imageView.scaleType = ImageView.ScaleType.CENTER_CROP
+                        imageView.scaleType = ScaleType.CENTER_CROP
                     }
                 }
                 loader?.apply {
@@ -146,7 +150,7 @@ class Banner @JvmOverloads constructor(
             }
         })
 
-        adapter.setOnItemClickListener { view, position ->
+        adapter.setOnItemClickListener { _, position ->
             if (scrollType == 4) {
                 if (position > 0 && position < factory.count - 1) {
                     onPageClick?.invoke(view, position - 1)
@@ -265,7 +269,7 @@ class Banner @JvmOverloads constructor(
     }
 
     override fun onDestroy(owner: LifecycleOwner) {
-        stopPlay()
+        this.imageList.clear()
         this.owner?.lifecycle?.removeObserver(this)
         this.owner = null
     }

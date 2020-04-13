@@ -9,10 +9,8 @@
 
     <com.showmethe.banner.Banner
         android:id="@+id/banner"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:layout_constrainedHeight="true"
-        app:layout_constraintDimensionRatio="h,16:9"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
         app:autoPlay="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
