@@ -1,7 +1,8 @@
-package com.showmethe.banner
+package com.show.banner
 
 import android.content.Context
 import android.util.AttributeSet
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.MotionEvent
 import android.view.View
@@ -14,9 +15,9 @@ import androidx.lifecycle.DefaultLifecycleObserver
 import androidx.lifecycle.LifecycleOwner
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
-import com.showmethe.banner.transformer.SpinnerTransformer
-import com.showmethe.banner.transformer.AlphaScalePageTransformer
-import com.showmethe.banner.transformer.ParallaxTransformer
+import com.show.banner.transformer.SpinnerTransformer
+import com.show.banner.transformer.AlphaScalePageTransformer
+import com.show.banner.transformer.ParallaxTransformer
 
 
 /**
@@ -31,8 +32,8 @@ class Banner @JvmOverloads constructor(
 ) : RelativeLayout(context, attrs, defStyleAttr), DefaultLifecycleObserver {
 
     private val imageList = ObservableArrayList<Any>()
-    private var viewPager: ViewPager2? = null
-    private lateinit var adapter: BannerViewAdapter
+    private lateinit var viewPager: ViewPager2
+    private val adapter: BannerViewAdapter by lazy { BannerViewAdapter(context, imageList) }
     private var dotTabView: DotTabView? = null
     private var orientation = ViewPager2.ORIENTATION_HORIZONTAL
     private var autoPlay = false
@@ -41,7 +42,7 @@ class Banner @JvmOverloads constructor(
     private var unselectColor: Int = 0
     private var delayTime = TIME
     private var showIndicator = true
-    private var scaleType = 1
+    private var scaleType = -1
     private var transformer: ViewPager2.PageTransformer? = null
     private var transformerType = -1
     private var indicatorGravity = 0
@@ -51,6 +52,7 @@ class Banner @JvmOverloads constructor(
     private var dotWith = 10
     private var dotType = 0
     private var dotDistant = 10
+    private var userTouchAble = true
 
 
     private val task = object : Runnable {
@@ -78,8 +80,8 @@ class Banner @JvmOverloads constructor(
         dotTabView = view.findViewById(R.id.dot)
 
         when (scrollType) {
-            REPEAT -> factory = SmoothFactory(viewPager!!)
-            INFINITY -> factory = InfinityFactory(viewPager!!)
+            REPEAT -> factory = SmoothFactory(viewPager)
+            INFINITY -> factory = InfinityFactory(viewPager)
         }
 
 
@@ -88,9 +90,11 @@ class Banner @JvmOverloads constructor(
             setIndicatorGravity()
         }
 
-        adapter = BannerViewAdapter(context, imageList)
-        viewPager?.adapter = adapter
-        viewPager?.orientation = orientation
+        viewPager.adapter = adapter
+        viewPager.orientation = orientation
+        viewPager.isUserInputEnabled = userTouchAble
+
+        Log.e("Banner","adapter $adapter")
 
         if (scrollType == 3) {
             when (transformerType) {
@@ -137,9 +141,6 @@ class Banner @JvmOverloads constructor(
         adapter.setOnImageLoader(object : BannerViewAdapter.onImageLoader {
             override fun display(url: Any, imageView: ImageView) {
                 when (scaleType) {
-                    0 -> {
-                        imageView.scaleType = ScaleType.FIT_XY
-                    }
                     1 -> {
                         imageView.scaleType = ScaleType.CENTER_CROP
                     }
@@ -183,6 +184,7 @@ class Banner @JvmOverloads constructor(
         dotWith = array.getDimension(R.styleable.Banner_dotWith, 10f).toInt()
         dotType = array.getInt(R.styleable.Banner_dotType, 0)
         dotDistant = array.getDimension(R.styleable.Banner_dotDistant, 10f).toInt()
+        userTouchAble = array.getBoolean(R.styleable.Banner_userTouchAble,true)
         array.recycle()
     }
 
@@ -320,11 +322,12 @@ class Banner @JvmOverloads constructor(
         factory.currentItem = 1
 
         factory.count = imageList.size
-        viewPager?.offscreenPageLimit = factory.count
+        viewPager.offscreenPageLimit = factory.count
         factory.delayTime = delayTime.toLong()
         if (autoPlay) {
             play()
         }
+
 
 
         if (showIndicator && arrayList.size > 1) {

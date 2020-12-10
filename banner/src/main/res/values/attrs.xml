@@ -12,6 +12,7 @@
             <enum name="OVAL" value="0"/>
             <enum name="RECTANGLE" value="1"/>
         </attr>
+        <attr name="userTouchAble" format="boolean"/>
         <attr name="delayTime" format="integer"/>
         <attr name="pageOrientation" format="enum">
             <enum name="HORIZONTAL" value="0"/>
@@ -22,7 +23,6 @@
             <enum name="AlphaScale" value="2"/>
         </attr>
         <attr name="imageScaleType" format="enum">
-            <enum name="fitXY" value="0"/>
             <enum name="centerCrop" value="1"/>
         </attr>
         <attr name="showIndicator" format="boolean"/>

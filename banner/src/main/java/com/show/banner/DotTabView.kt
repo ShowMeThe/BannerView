@@ -1,4 +1,4 @@
-package com.showmethe.banner
+package com.show.banner
 
 import android.content.Context
 
@@ -11,7 +11,7 @@ import android.widget.RelativeLayout
 
 import androidx.viewpager.widget.ViewPager
 import androidx.viewpager2.widget.ViewPager2
-import com.showmethe.banner.util.dip2px
+import com.show.banner.util.dip2px
 
 
 /**

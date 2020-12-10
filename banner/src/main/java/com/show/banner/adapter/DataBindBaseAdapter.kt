@@ -1,4 +1,4 @@
-package com.showmethe.banner.adapter
+package com.show.banner.adapter
 
 import android.content.Context
 import androidx.databinding.DataBindingUtil

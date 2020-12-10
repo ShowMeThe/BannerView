@@ -1,4 +1,4 @@
-package com.showmethe.banner
+package com.show.banner
 
 import android.os.Handler
 import android.os.Looper

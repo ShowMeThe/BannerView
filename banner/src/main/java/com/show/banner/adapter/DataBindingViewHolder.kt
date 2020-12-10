@@ -1,4 +1,4 @@
-package com.showmethe.banner.adapter
+package com.show.banner.adapter
 
 import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.RecyclerView

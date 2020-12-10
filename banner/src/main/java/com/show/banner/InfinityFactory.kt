@@ -1,4 +1,4 @@
-package com.showmethe.banner
+package com.show.banner
 
 import android.view.MotionEvent
 import androidx.viewpager2.widget.ViewPager2

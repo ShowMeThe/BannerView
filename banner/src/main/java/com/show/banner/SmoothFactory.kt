@@ -1,8 +1,8 @@
-package com.showmethe.banner
+package com.show.banner
 
 import android.view.MotionEvent
 import androidx.viewpager2.widget.ViewPager2
-import com.showmethe.banner.BannerFactory
+import com.show.banner.BannerFactory
 
 /**
  * Author: showMeThe

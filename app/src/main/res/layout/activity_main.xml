@@ -7,10 +7,10 @@
     tools:context=".MainActivity">
 
 
-    <com.showmethe.banner.Banner
+    <com.show.banner.Banner
         android:id="@+id/banner"
         android:layout_width="match_parent"
-        android:layout_height="300dp"
+        android:layout_height="match_parent"
         app:autoPlay="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

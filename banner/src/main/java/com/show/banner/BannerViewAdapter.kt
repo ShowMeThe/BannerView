@@ -1,13 +1,14 @@
-package com.showmethe.banner
+package com.show.banner
 
 import android.content.Context
+import android.util.Log
 import android.widget.ImageView
 
 import androidx.databinding.ObservableArrayList
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.SimpleItemAnimator
-import com.showmethe.banner.databinding.ItemBannerViewBinding
-import com.showmethe.banner.adapter.DataBindBaseAdapter
+import com.show.banner.databinding.ItemBannerViewBinding
+import com.show.banner.adapter.DataBindBaseAdapter
 
 
 /**
@@ -21,9 +22,7 @@ class BannerViewAdapter(context: Context, data: ObservableArrayList<Any>) : Data
 
     override fun bindItems(binding: ItemBannerViewBinding?, item: Any, position: Int) {
         if (binding != null) {
-            if (imageLoader != null) {
-                imageLoader!!.display(item, binding.ivBanner)
-            }
+            imageLoader?.display(item, binding.ivBanner)
         }
     }
 

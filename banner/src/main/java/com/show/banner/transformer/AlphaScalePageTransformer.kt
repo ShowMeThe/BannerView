@@ -1,4 +1,4 @@
-package com.showmethe.banner.transformer
+package com.show.banner.transformer
 
 import android.view.View
 import androidx.viewpager2.widget.ViewPager2

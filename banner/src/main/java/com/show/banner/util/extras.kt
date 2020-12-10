@@ -1,4 +1,4 @@
-package com.showmethe.banner.util
+package com.show.banner.util
 
 import android.content.Context
 
